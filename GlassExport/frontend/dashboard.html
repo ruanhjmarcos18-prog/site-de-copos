@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Glass Export</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo"><h2>GlassExport</h2></div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#">📦 Produtos</a></li>
+                    <li><a href="#" onclick="logout()">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><h1>Gerenciamento de Exportação</h1></header>
+            <div class="content-wrapper">
+                <section class="card form-section">
+                    <h2 id="formTitle">Cadastrar Novo Produto</h2>
+                    <form id="produtoForm">
+                        <input type="hidden" id="produtoId">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Nome do Copo</label>
+                                <input type="text" id="nome" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Preço Base (R$)</label>
+                                <input type="number" id="precoBase" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-success">Salvar Produto</button>
+                            <button type="button" class="btn-secondary" onclick="limparFormulario()">Cancelar</button>
+                        </div>
+                    </form>
+                    <div id="formMsg" class="msg-box"></div>
+                </section>
+                <section class="card table-section">
+                    <div class="table-header"><h2>Lista de Produtos</h2></div>
+                    <div class="table-responsive">
+                        <table id="produtosTable">
+                            <thead>
+                                <tr><th>ID</th><th>Nome</th><th>Preço Base (R$)</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Conversão -->
+    <div id="modalConversao" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Exportar Produto</h2>
+            <p id="produtoSelecionadoNome" class="highlight-text"></p>
+            <input type="hidden" id="modalProdutoId">
+            <div class="input-group">
+                <label>Selecione o País/Moeda de Destino:</label>
+                <select id="moedaSelect">
+                    <option value="USD">Dólar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="GBP">Libra (GBP)</option>
+                    <option value="JPY">Iene (JPY)</option>
+                    <option value="ARS">Peso Argentino (ARS)</option>
+                </select>
+            </div>
+            <button class="btn-primary btn-block" onclick="realizarConversao()">Calcular Exportação</button>
+            <div id="resultadoConversao" class="resultado-box" style="display: none;">
+                <ul>
+                    <li>Preço Base: <span id="resBase"></span></li>
+                    <li>Preço Venda (com lucro): <span id="resLucro"></span></li>
+                    <li>Cotação Atual (<span id="resMoeda"></span>): <span id="resTaxa"></span></li>
+                    <li class="preco-destaque">Preço Final Exterior: <span id="resFinal"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

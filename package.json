@@ -1,0 +1,14 @@
+{
+  "name": "sistema-exportacao",
+  "version": "1.0.0",
+  "description": "Sistema Back-office para empresa que exporta copos de vidro.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}
